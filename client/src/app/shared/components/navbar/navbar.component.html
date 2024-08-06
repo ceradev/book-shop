@@ -1,0 +1,254 @@
+<nav
+  class="bg-gradient-to-r from-medium-brown-color via-dark-brown-color to-medium-brown-color shadow-lg transition duration-300 ease-in-out flex justify-between items-center h-auto px-5"
+>
+  <a class="flex items-center" [routerLink]="['/']">
+    <img
+      src="../../assets/images/LogoLibreriaEviden.png"
+      alt="Libreria Eviden"
+      class="h-24 w-auto mr-2 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-6"
+    />
+  </a>
+  <div class="sm:hidden">
+    <div class="relative">
+      <button
+        (click)="toggleDropdown()"
+        class="flex items-center focus:outline-none"
+      >
+        <svg
+          class="h-8 w-8 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+      <div
+        class="absolute right-0 mt-2 py-2 w-auto bg-medium-brown-color rounded-md shadow-lg z-10 text-white font-nunito text-sm font-semibold text-center"
+        [ngClass]="{ hidden: !dropdownOpen, flex: dropdownOpen }"
+      >
+        <div class="flex flex-col text-left">
+          @if (isAuthenticated) { 
+            @if (role == 'admin') {
+            <button class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate" [routerLink]="['home']" (click)="toggleDropdown()">
+              Inicio
+            </button>
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['clients']" (click)="toggleDropdown()"
+            >Gestion de clientes</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['chat']" (click)="toggleDropdown()"
+            >Chats</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['profile']" (click)="toggleDropdown()"
+            >Perfil</button
+          >
+          } @else if (role == 'seller') {
+            <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['home']" (click)="toggleDropdown()"
+            >
+              Inicio
+            </button>
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['add/book']"  (click)="toggleDropdown()"
+            >Añadir libro</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['chat']" (click)="toggleDropdown()"
+            >Chat</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['profile']" (click)="toggleDropdown()"
+            >Perfil</button
+          >
+          } @else {
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['cart']"  (click)="toggleDropdown()"
+            >Carrito</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['favorites']"  (click)="toggleDropdown()"
+            >Favoritos</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['profile']"  (click)="toggleDropdown()"
+            >Perfil</button
+          >
+          }
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer"
+            (click)="logout()" 
+            [routerLink]="['']"
+            >Cerrar Sesion</button
+          >
+          } @else {
+          <button
+            class="block px-4 py-2 text-sm  hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out"
+            [routerLink]="['register']"  (click)="toggleDropdown()"
+            >Registrarse</button
+          >
+          <button
+            class="block px-4 py-2 text-sm hover:text-dark-brown-color hover:scale-110 transition-all duration-300 ease-in-out truncate"
+            [routerLink]="['login']"  (click)="toggleDropdown()"
+            >Iniciar Sesion</button
+          >
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden sm:flex items-center md:flex lg:flex xl:flex">
+    @if(isAuthenticated) {
+    <div class="flex mr-2 sm:flex-row md:flex-row lg:flex-row xl:flex-row">
+      @if(role == "admin") {
+      <button
+        [routerLink]="['home']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconHome.png"
+          alt="Admin Home Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['clients']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconLightManageClients.png"
+          alt="Admin Manage Clients Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['chat']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconLightAdminChat.png"
+          alt="Admin Chat Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['profile']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconUserLight.png"
+          alt="Admin Profile Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      } @else if(role == "seller") {
+        <button [routerLink]="['home']" class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block">
+      
+          <img
+            src="assets/images/iconHome.png"
+            alt="Seller Home Icon"
+            class="h-12 mr-2 sm:block md:block lg:block xl:block"
+          />
+        </button>
+      <button
+        [routerLink]="['add/book']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconLightAddBook.png"
+          alt="Seller Add Books Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['chat']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconLightSellerChat.png"
+          alt="Seller Chat Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['profile']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconUserLight.png"
+          alt="Seller Profile Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      } @else {
+        <button
+        [routerLink]="['cart']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconCartLight.png"
+          alt="User"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['favorites']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconFavLight.png"
+          alt="Favoritos"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+      <button
+        [routerLink]="['profile']"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img src="assets/images/iconUserLight.png" alt="User" class="h-12 mr-2 sm:block md:block lg:block xl:block" />
+      </button>
+      }
+      <button
+        (click)="logout()"
+        class="hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer mr-2 sm:block md:block lg:block xl:block"
+      >
+        <img
+          src="assets/images/iconLogout.png"
+          alt="Logout Icon"
+          class="h-12 mr-2 sm:block md:block lg:block xl:block"
+        />
+      </button>
+    </div>
+    } @else {
+    <div class="flex sm:flex-row md:flex-row lg:flex-row xl:flex-row">
+      <button
+        [routerLink]="['/register']"
+        class="inline-block font-nunito border-2 border-dark-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold px-6 py-2 mr-4 rounded-lg text-white shadow-lg hover:bg-dark-brown-color duration-300 ease-in-out delay-100 sm:block md:block lg:block xl:block"
+        >Registrarse</button>
+      <button
+        [routerLink]="['/login']"
+        class="inline-block px-6 font-nunito  border-2 border-dark-brown-color hover:text-white font-semibold hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all py-2 rounded-lg text-white shadow-lg hover:bg-dark-brown-color duration-300 ease-in-out delay-100 sm:block md:block lg:block xl:block"
+        >Iniciar Sesion</button
+      >
+    </div>
+    }
+  </div>
+</nav>

@@ -1,0 +1,181 @@
+<div class="flex flex-col items-center justify-around mt-10 w-full">
+  <div
+    class="border-4 border-medium-brown-color bg-gradient-to-r from-dark-brown-color via-medium-brown-color to-dark-brown-color rounded-lg shadow-md p-6"
+    style="width: 80%"
+  >
+    <div class="flex flex-row items-center justify-between" style="gap: 1rem">
+      <div>
+        <img
+          src="assets/images/iconUserLight.png"
+          class="object-contain"
+          alt="foto de perfil de usuario"
+        />
+      </div>
+
+      <div class="flex-1">
+        <h5 class="text-lg font-semibold text-white">{{ user.username }}</h5>
+        <p class="text-sm text-light-brown-color">{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="bg-transparent rounded-lg shadow-md p-6"
+    style="width: 80%; margin-top: 30px"
+  >
+    <div class="flex flex-col relative">
+      <h5 class="text-2xl font-semibold mb-4 underline underline-offset-4">
+        Datos personales
+      </h5>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Nombre de usuario:</b>
+        @if(usernameForm == false) {
+           {{ username }} <button type="button" (click)="usernameForm = !usernameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">
+              Edit
+            </button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="username" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeUsername()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="usernameForm = !usernameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Correo electrónico:</b> 
+          {{ email }} 
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Nombre:</b> 
+        @if(nameForm == false) {
+          {{ name }} <button type="button" (click)="nameForm = !nameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">Edit</button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="name" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeName()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="nameForm = !nameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Apellidos:</b>
+        @if(surnameForm == false) {
+          {{ surname }} <button type="button" (click)="surnameForm = !surnameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">Edit</button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="surname" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeSurname()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="surnameForm = !surnameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <div class="flex flex-col mt-2">
+        <h6 class="text-lg font-semibold mb-2 underline underline-offset-4">Cambiar contraseña</h6>
+        <div class="flex flex-row items-center">
+          <input name="oldPassword" [(ngModel)] ="oldPassword" placeholder="Contraseña actual" class="border-2 border-medium-brown-color w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center">
+          <input name="newPassword" [(ngModel)] ="newPassword" placeholder="Nueva contraseña" class="border-2 border-medium-brown-color w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center">
+          <input name="repeatNewPassword" [(ngModel)] ="repeatNewPassword" placeholder="Repetir nueva contraseña" class="border-2 border-medium-brown-color w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center justify-between mt-4">
+          <button type="button" (click)="resetPassword()" class="border-2 border-medium-brown-color text-sm px-2 py-2 hover:bg-medium-brown-color hover:text-white hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100">Actualizar contraseña</button>
+           <button
+        class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium text-sm rounded-full px-2 py-2 shadow-md ml-auto"
+        type="button"
+        (click)="updateProfile()"
+      >
+        Guardar cambios
+      </button>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+
+  <div
+    class="bg-transparent border-2 border-medium-brown-color rounded-lg shadow-md p-6 mb-4 mt-10"
+    style="width: 80%"
+  >
+    <div class="p-6">
+      <h5 class="text-lg font-semibold mb-4 underline underline-offset-4">
+        Mensajes pendientes
+      </h5>
+      <div
+        class="h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-light-brown-color scrollbar-track-light-brown-color border-l-2 border-r-2 border-medium-brown-color rounded-lg"
+      >
+        <div class="flex flex-col gap-4 p-4">
+          <div class="flex justify-between items-center p-4 rounded-lg shadow">
+            <div>
+              <h3>Vendedor</h3>
+              <h5>Asunto</h5>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition-all duration-200 ease-in-out rounded"
+            >
+              Responder
+            </button>
+          </div>
+          <div class="flex justify-between items-center p-4 rounded-lg shadow">
+            <div>
+              <h3>Vendedor</h3>
+              <h5>Asunto</h5>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition-all duration-200 ease-in-out rounded"
+            >
+              Responder
+            </button>
+          </div>
+          <div class="flex justify-between items-center p-4 rounded-lg shadow">
+            <div>
+              <h3>Vendedor</h3>
+              <h5>Asunto</h5>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition-all duration-200 ease-in-out rounded"
+            >
+              Responder
+            </button>
+          </div>
+          <div class="flex justify-between items-center p-4 rounded-lg shadow">
+            <div>
+              <h3>Vendedor</h3>
+              <h5>Asunto</h5>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition-all duration-200 ease-in-out rounded"
+            >
+              Responder
+            </button>
+          </div>
+          <div class="flex justify-between items-center p-4 rounded-lg shadow">
+            <div>
+              <h3>Vendedor</h3>
+              <h5>Asunto</h5>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition-all duration-200 ease-in-out rounded"
+            >
+              Responder
+            </button>
+          </div>
+          <!-- Agrega más-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-50"></div>
+</div>

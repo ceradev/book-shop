@@ -1,0 +1,26 @@
+.form{
+    font-family: 'Nunito', sans-serif;
+    padding: 2% 5%;
+    font-size: larger;
+}
+
+.card-header {
+    --mdb-card-header-border-color: var(--dark-brown-color);
+   
+}
+.container{
+    display: grid;
+}
+
+.container>*{
+    background-color:var(--medium-brown-color);
+}
+.textAreaBox {
+    height: auto;
+    min-height: 160px;
+}
+
+.btnSend{
+    float: right;
+    margin-bottom: 1.5rem;
+}

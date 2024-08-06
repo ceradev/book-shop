@@ -1,0 +1,32 @@
+.form{
+    font-family: 'Nunito', sans-serif;
+    padding: 2% 5%;
+    font-size: larger;
+}
+
+.card-header {
+    --mdb-card-header-border-color: var(--dark-brown-color);
+
+}
+.containerBox{
+    border-radius: 16px;
+}
+
+.bottomContainer>*{
+    background-color:var(--medium-brown-color);
+}
+
+.paypalButton{
+    width: 20%;
+    margin-bottom: 1%;
+}
+.truncate-1-lines {
+  /* display: -webkit-box; */
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+input[name="quantity"]{
+  max-width: 64px;
+  min-width: 24px;
+}

@@ -1,0 +1,21 @@
+<div>
+    <div style="display: flex; flex-direction: row;">
+        <p>
+            <span *ngFor="let estrella of estrellasArray">
+                <i class="fa-solid fa-star"></i>
+            </span>
+            
+
+            <span *ngIf="estrellasVaciasArray[0]!==null">
+                <span *ngFor="let estrella of estrellasMitadArray">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </span>
+            </span>
+
+            <span  *ngFor="let estrella of estrellasVaciasArray" >
+                <i class="fa-regular fa-star"></i>
+            </span>
+        </p>
+        
+    </div>
+</div>

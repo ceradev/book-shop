@@ -1,0 +1,39 @@
+.card-slider {
+    white-space: nowrap;
+    /* Evita que las tarjetas se desplacen verticalmente */
+    overflow: hidden;
+    /* Oculta la barra de desplazamiento*/
+}
+
+.card {
+    display: block;
+    /* Muestra las tarjetas en línea */
+    margin: 10px;
+    /* Espaciado entre tarjetas */
+    padding: 2%;
+}
+
+.card img {
+    height: 200px;
+    /* Altura de la imagen */
+    width: auto;
+    /* Ancho de la imagen */
+    object-fit: contain;
+    /* Ajuste para cubrir el área */
+    margin: 10px;
+    background-color: var(--medium-brown-color);
+}
+
+.descriptionBox {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.description {
+    text-overflow: ellipsis;
+    white-space: wrap;
+}
+
+.rightBox {
+    text-align: right;
+}

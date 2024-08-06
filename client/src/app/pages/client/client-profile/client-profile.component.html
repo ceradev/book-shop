@@ -1,0 +1,187 @@
+<div class="flex flex-col items-center justify-around mt-10 w-full">
+  <div
+    class="border-4 border-medium-brown-color bg-gradient-to-r from-dark-brown-color via-medium-brown-color to-dark-brown-color rounded-lg shadow-md p-6"
+    style="width: 80%"
+  >
+    <div class="flex flex-row items-center justify-between" style="gap: 1rem">
+      <div>
+        <img
+          src="assets/images/iconUserLight.png"
+          class="object-contain"
+          alt="foto de perfil de usuario"
+        />
+      </div>
+
+      <div class="flex-1">
+        <h5 class="text-lg font-semibold text-white">{{ user.username }}</h5>
+        <p class="text-sm text-light-brown-color">{{ user.email }}</p>
+      </div>
+
+      <div class="flex-1 text-center" style="border-left: 1px solid #222">
+        <h5 class="text-lg font-semibold text-white">Leidos este año</h5>
+        <p class="text-md font-semibold text-light-brown-color">{{ reviews.length }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="bg-transparent rounded-lg shadow-md p-6"
+    style="width: 80%; margin-top: 30px"
+  >
+    <div class="flex flex-col relative">
+      <h5 class="text-2xl font-semibold mb-2">
+        Datos personales
+      </h5>
+      <hr class="border-2 border-dark-brown-color">
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Nombre de usuario:</b>
+        @if(usernameForm == false) {
+           {{ username }} <button type="button" (click)="usernameForm = !usernameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">
+              Edit
+            </button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="username" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeUsername()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="usernameForm = !usernameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Correo electrónico:</b> 
+          {{ email }} 
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Nombre:</b> 
+        @if(nameForm == false) {
+          {{ name }} <button type="button" (click)="nameForm = !nameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">Edit</button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="name" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeName()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="nameForm = !nameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg"><b>Apellidos:</b>
+        @if(surnameForm == false) {
+          {{ surname }} <button type="button" (click)="surnameForm = !surnameForm" class="text-sm text-dark-brown-color no-underline hover:text-medium-brown-color hover:underline transition duration-300 ease-in-out delay-100 ml-2">Edit</button>
+        } @else {
+          <div class="flex items-center w-3/5">
+            <input type="text" [(ngModel)] ="surname" class="border-2 border-medium-brown-color rounded-lg px-2 mt-2" />
+            <i (click)="unChangeSurname()" class="fa-solid fa-x ml-2 text-light-red-color hover:text-dark-red-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+            <i (click)="surnameForm = !surnameForm" class="fa-solid fa-check ml-2 text-medium-brown-color hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100"></i>
+          </div>
+        }
+        </p>
+      </div>
+      <hr class="border-2 border-dark-brown-color">
+      <div class="flex flex-col mt-4 mb-4">
+        <h6 class="text-lg font-semibold mb-2 ">Cambiar contraseña</h6>
+        <div class="flex flex-row items-center">
+          <input name="oldPassword" [(ngModel)] ="oldPassword" placeholder="Contraseña actual" class="border-2 border-medium-brown-color w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center">
+          <input name="newPassword" [(ngModel)] ="newPassword" placeholder="Nueva contraseña" class="border-2 border-medium-brown-color  w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center">
+          <input name="repeatNewPassword" [(ngModel)] ="repeatNewPassword" placeholder="Repetir nueva contraseña" class="border-2 border-medium-brown-color w-auto rounded-lg px-2 py-1 mt-2" type="password">
+        </div>
+        <div class="flex flex-row items-center justify-between mt-4">
+          <button type="button" (click)="resetPassword()" class="border-2 border-medium-brown-color text-sm px-2 py-2 hover:bg-medium-brown-color hover:text-white hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100">Actualizar contraseña</button>
+           <button
+        class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium text-sm rounded-full px-2 py-2 shadow-md ml-auto"
+        type="button"
+        (click)="updateProfile()"
+          >
+          Guardar cambios
+          </button>
+        </div>
+      </div>
+      <hr class="border-2 border-dark-brown-color">
+      <h5 class="text-2xl font-semibold mb-4 underline underline-offset-4 mt-4">
+        Direcciones
+      </h5>
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @for(address of user.addresses; track address.id){
+        <div class="bg-transparent border-2 border-medium-brown-color rounded-lg shadow-md p-4">
+          <h3 class="text-lg font-semibold">
+            <b>Dirección:</b> {{ address.road }}
+          </h3>
+          <dl class="grid grid-cols-2 gap-4 mt-4">
+            <dt class="font-bold">Ciudad:</dt>
+            <dd>{{ address.city }}</dd>
+            <dt class="font-bold">Provincia:</dt>
+            <dd>{{ address.country }}</dd>
+            <dt class="font-bold">Código postal:</dt>
+            <dd>{{ address.postalCode }}</dd>
+            <dt class="font-bold">Numero:</dt>
+            <dd>{{ address.num }}</dd>
+          </dl>
+        </div>
+        } 
+      </section>
+    </div>
+  </div>
+  <div
+    class="bg-transparent border-2 border-medium-brown-color rounded-lg shadow-md p-6 mb-4 mt-10"
+    style="width: 80%"
+  >
+    <div class="p-6">
+      <h5 class="text-2xl font-semibold mb-4">
+        Reseñas
+      </h5>
+      <div
+        class="h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-light-brown-color scrollbar-track-light-brown-color border-l-2 border-r-2 border-medium-brown-color rounded-lg"
+      >
+      <div class="flex flex-col gap-4 p-4">
+        @if (reviews.length == 0) {
+          <h3 class="text-xl font-semibold">No hay reseñas</h3>
+        } @else {
+        @for(review of reviews; track review){
+          <div class="flex flex-col gap-4 p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col gap-2">
+                    <h3 class="text-lg font-bold"><button class="hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100" [routerLink]="['/book/details/', review.isbn]">{{review.title}}</button></h3>
+                    <div class="flex flex-row items-center gap-1">
+                        <h4 class="text-sm">{{review.author.firstName}} {{review.author.lastName}}</h4>
+                    </div>
+                  </div>
+                  <p class="text-sm truncate w-1/3">{{review.comment}}</p>
+                  <app-stars [nota]="review.rating" style="margin-top: 1rem;"></app-stars>
+            </div>
+      </div>
+        }
+      }
+      </div>
+    </div>
+  </div>
+  </div>
+  <div
+  class="bg-transparent border-2 border-medium-brown-color rounded-lg shadow-md p-6 mb-4 mt-10"
+  style="width: 80%"
+>
+  <div class="p-6">
+    <h5 class="text-2xl font-semibold mb-4">
+      Historial de compras
+    </h5>
+    @for(sale of sales; track sale.id){
+    <div class="flex flex-col gap-4 p-4 rounded-lg shadow">
+      <div class="flex justify-between items-center">
+          <div class="flex flex-col gap-2">
+              <h3 class="text-lg font-bold"><button class="hover:text-dark-brown-color hover:scale-105 transition-all duration-300 ease-in-out delay-100" [routerLink]="['/book/details/', sale.book.isbn]">{{sale.book.title}}</button></h3>
+              <div class="flex flex-row items-center gap-1">
+                  <h4 class="text-sm">{{sale.book.author.firstName}} {{sale.book.author.lastName}}</h4>
+              </div>
+            </div>
+            <p class="text-sm font-medium truncate w-1/3">Fecha de compra : {{sale.saleDate}}</p>
+      </div>
+    </div>
+    }
+  </div>
+    <div></div>
+  </div>

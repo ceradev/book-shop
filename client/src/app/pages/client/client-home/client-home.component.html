@@ -1,0 +1,253 @@
+<div class="container mt-5 mb-5">
+  <h1 class="text-xl font-nunito font-semibold text-center text-shadow">
+    Bienvenido a la librería Eviden, aqui podras reservar tus libros favoritos,
+    y mucho mas.
+  </h1>
+  <p class="text-center text-dark-brown-color text-sm">
+    Esperemos que disfrutes de la librería, encuentres los libros que buscas y
+    puedas disfrutas de una buena historia.
+  </p>
+
+  <div class="max-w-2xl mx-auto">
+    <div class="flex justify-center mt-10">
+      <div class="w-full">
+        <div
+          class="flex rounded-md shadow-sm border-2 border-medium-brown-color"
+        >
+          <input
+            type="text"
+            class="focus:ring-dark-brown-color focus:border-dark-brown-color flex-1 block w-11/12 xl:w-3/4 rounded-none rounded-l-md pl-8 pr-3 py-2"
+            (keyup.enter)="doSearch()"
+            (input)="onInputChange($event)"
+            placeholder="Buscar por el ISBN, el autor o el título..."
+            aria-label="Buscar"
+            aria-describedby="button-addon2"
+            style="background-color: var(--light-brown-color)"
+            [(ngModel)]="filterText"
+          />
+          <button
+            class="inline-flex items-center px-3 py-2 border border-gray-300 rounded-r-md bg-medium-brown-color hover:bg-dark-brown-color text-white focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-dark-brown-color focus:border-dark-brown-color sm:text-sm transition-all duration-300 ease-in-out"
+            type="button"
+            id="button-addon2"
+            (click)="doSearch()"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="#FFFFFF"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-around items-center mt-4">
+      <h5
+        class="text-lg font-semibold text-shadow text-center cursor-pointer hover:border-b-2 hover:border-medium-brown-color transition-all duration-300 ease-in-out"
+        (click)="goToAdvancedSearch()"
+      >
+        Búsqueda avanzada
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16">
+  <div
+    class="flex justify-center items-center border-b-2 border-medium-brown-color pb-2 mr-4 ml-4"
+  >
+    <h1
+      *ngIf="isEmptyInput()"
+      class="text-xl font-nunito font-semibold text-shadow"
+      style="flex: 1"
+    >
+      Libros en cartelera
+    </h1>
+    <h1
+      *ngIf="!isEmptyInput()"
+      class="text-xl font-nunito font-semibold text-shadow"
+      style="flex: 1"
+    >
+      Resultados de búsqueda
+    </h1>
+    <div class="flex">
+      <p
+        class="text-sm font-nunito font-semibold text-shadow mr-2 mt-2"
+        style="flex: 1"
+      >
+        Mostrar
+      </p>
+      <select
+        class="border-2 bg-transparent font-nunito text-center font-semibold border-medium-brown-color rounded-lg px-2 py-1"
+        style="flex: 1"
+        (change)="onSelectBooks($event)"
+      >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Books -->
+
+  <div
+    class="container mt-10 mb-5 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2"
+    style="border-radius: 12px"
+  >
+    <div
+      class="bg-transparent border-2 border-medium-brown-color shadow-sm rounded-lg overflow-hidden hover:scale-105 transition duration-300 ease-in-out"
+      *ngFor="let book of books"
+    >
+      <div class="p-6">
+        <section class="flex flex-col">
+          <div class="flex">
+            <div class="w-1/4 mr-2">
+              <a class="" [routerLink]="['/book/details/', book.isbn]"
+                ><img
+                  class="w-40 h-48 rounded-3 shadow-sm object-cover transition-all hover:opacity-75 hover:-translate-y-1 duration-300 ease-in-out"
+                  [style.view-transition-name]="'book-detail-' + book.isbn"
+                  src="{{ book.cover }}"
+                  alt=""
+              /></a>
+            </div>
+            <div class="w-3/4">
+              <h5>{{ book.title }}</h5>
+              <p class="text-sm">{{ book.isbn }}</p>
+              <p class="text-sm">
+                {{ book.author.firstName }} {{ book.author.lastName }} -
+                {{ book.editorial }}
+              </p>
+              <app-stars [nota]="book.reviewMean"></app-stars>
+                @if(book.nReviews < 1) {
+                  <p class="text-sm">Calificación: 0</p>
+                } @else {
+                  <p class="text-sm">Calificaciones: {{book.nReviews}}</p>
+                }
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div class="price">
+              <p
+                class="mt-2 text-lg font-semibold bg-medium-brown-color text-white rounded-lg px-3 self-start"
+              >
+                {{ book.price.toFixed(2) }} €
+              </p>
+            </div>
+            @if(isClient == true || isClient == false && isAdmin == false && isSeller
+            == false ) {
+            <div class="flex items-center space-x-2">
+              @if(book.isFavourite == true) {
+              <button (click)="removeFavourite(book.isbn)">
+                <i
+                  class="fa-solid fa-heart text-3xl text-medium-brown-color hover:text-dark-brown-color transition duration-300 ease-in-out delay-100"
+                ></i>
+              </button>
+              } @else {
+              <button (click)="addToFavorites(book.isbn)">
+                <i
+                  class="fa-regular fa-heart text-3xl text-medium-brown-color hover:text-dark-brown-color transition duration-300 ease-in-out delay-100"
+                ></i>
+              </button>
+              }
+              <ng-container *ngIf="book.stock > 0; else nostock">
+                <button
+                  class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all duration-300 ease-in-out delay-100 focus:ring-2 focus:ring-offset-2 focus:ring-medium-brown-color font-semibold py-2 px-4 rounded self-end"
+                  (click)="addToCart(book)"
+                  [disabled]="book.isLoading"
+                >
+                  <ng-container *ngIf="!book.isLoading; else loading">
+                    Añadir al carrito
+                  </ng-container>
+                </button>
+              </ng-container>
+              <ng-template #loading>
+                <span class="loader"></span> Cargando...
+              </ng-template>
+              <ng-template #nostock>
+                <div class="bg-danger text-white px-4 py-2 rounded">
+                  Sin stock
+                </div>
+              </ng-template>
+            </div>
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-center mt-10 mb-5">
+  <nav class="flex" aria-label="navigation">
+    <ul class="flex space-x-4 items-center flex-wrap">
+      <li>
+        <button
+          class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+          [style.visibility]="
+            this.pagination.pageNumber === 0 ? 'hidden' : 'visible'
+          "
+          (click)="changePage(this.pagination.pageNumber - 1)"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="white"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+        </button>
+      </li>
+      <li *ngFor="let page of pages; let i = index">
+        <button
+          class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+          (click)="changePage(page - 1)"
+        >
+          {{ page }}
+        </button>
+      </li>
+      <li>
+        <button
+          class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+          [style.visibility]="
+            this.pagination.pageNumber === this.pagination.totalPages - 1
+              ? 'hidden'
+              : 'visible'
+          "
+          (click)="changePage(this.pagination.pageNumber + 1)"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="white"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

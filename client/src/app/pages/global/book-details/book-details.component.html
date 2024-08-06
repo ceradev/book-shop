@@ -1,0 +1,328 @@
+<div class="mt-8">
+  <div class="container">
+    <h1 class="text-3xl font-bold">{{ book.title }}</h1>
+    <h3 class="text-xl">
+      <!--{{ book.author.firstName }} {{ book.author.lastName }}-->
+      {{ authorName }}
+    </h3>
+    <h5 class="text-lg">{{ book.editorial }}</h5>
+    <p class="text-lg">{{ book.edition }}</p>
+  </div>
+
+  <div class="container flex flex-col items-center">
+    <div class="flex flex-row justify-center items-center mt-4">
+      <div
+        class="flex flex-col justify-center items-center bg-medium-brown-color px-2 pt-2 rounded-lg"
+        style="text-align: center"
+      >
+        <p class="text-lg font-semibold text-white">{{ book.price }}€</p>
+      </div>
+      @if(isClient == true || isClient == false && isAdmin == false && isSeller
+      == false ) {
+      <i
+        class="fa-solid fa-cart-plus fa-2x ml-4 p-2 rounded-full text-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition duration-300 ease-in-out delay-100"
+        (click)="addToCart(book.isbn)"
+      ></i>
+
+      @if (book.isFavourite == true) {
+      <i
+        class="fa-solid fa-heart fa-2x ml-4 p-2 rounded-full text-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition duration-300 ease-in-out delay-100"
+        (click)="removeFavourite(book.isbn)"
+      ></i>
+      } @else {
+      <i
+        class="fa-regular fa-heart fa-2x ml-4 p-2 rounded-full text-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg transition duration-300 ease-in-out delay-100"
+        (click)="addToFavourites(book.isbn)"
+      ></i>
+      } }
+    </div>
+  </div>
+
+  <div class="container flex flex-col items-center">
+    <div
+      class="flex flex-row justify-center items-center h-500 w-400 ml-8 mr-8"
+    >
+      <div
+        class="card shadow-md rounded relative overflow-hidden mt-4"
+        style="height: 450px; width: 350px"
+        [style.view-transition-name]="'book-detail-' + book.isbn"
+        [style.view-transition-name]="'book-cart-' + book.isbn"
+        [style.view-transition-name]="'book-fav-' + book.isbn"
+      >
+        <img
+          [src]="coverIsEmpty(book)"
+          class="card-img-top"
+          alt="..."
+          style="width: 100%; height: 100%; object-fit: cover"
+        />
+      </div>
+    </div>
+
+    @if(book.reviewMean!=null){
+    <app-stars
+      [nota]="book.reviewMean"
+      class="mt-4 text-shadow text-3xl rounded-lg"
+    ></app-stars>
+    } @if(book.reviewMean==null){
+    <app-stars
+      [nota]="0"
+      class="mt-4 text-shadow text-3xl rounded-lg"
+    ></app-stars>
+    }
+
+    <div class="container flex flex-col mt-5">
+      <p
+        class="text-2xl font-medium text-medium-brown-color underline underline-offset-4"
+      >
+        Géneros
+      </p>
+      <ul *ngFor="let genre of book.genres">
+        <li class="text-lg font-semibold">{{ genre.name }}</li>
+      </ul>
+      <h4 class="text-lg font-medium text-medium-brown-color">
+        Fecha de publicación:
+      </h4>
+      <p class="text-sm font-medium mb-4 w-2/3 text-justify">
+        {{ getDate() }}
+      </p>
+      <h4 class="text-lg font-semibold text-left text-medium-brown-color">
+        Sinopsis
+      </h4>
+      <p class="text-sm font-medium mb-4 w-2/3 text-justify">
+        {{ book.synopsis }}
+      </p>
+    </div>
+  </div>
+
+  @if(book.status != 'PENDING' && book.status != 'REJECTED') {
+  <div class="container flex flex-col mt-5">
+    @if (isClient == true) {
+    <div
+      class="bg-medium-brown-color items-center p-4 rounded-lg shadow-md w-full"
+    >
+      <h4
+        class="text-lg font-semibold text-center text-light-brown-color mb-4 underline underline-offset-4"
+      >
+        Reseñas : {{ nReviews() }}
+      </h4>
+      <div *ngIf="userModReview || !userPostedReview">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label
+              for="rating"
+              class="text-lg font-medium mb-2 text-light-brown-color"
+              >Nota:</label
+            >
+
+            <!--STARS RATE-->
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+              "
+            >
+              @if(newReview.rating==0){
+              <i class="fa-regular fa-star fa-2x mr-2" (click)="setRate(1)"></i>
+              } @if(newReview.rating>=1){
+              <i
+                class="fa-solid fa-star fa-2x mr-2"
+                (click)="setRate(1)"
+                style="color: gold"
+              ></i>
+              } @if(newReview.rating<2){
+              <i class="fa-regular fa-star fa-2x mr-2" (click)="setRate(2)"></i>
+              } @if(newReview.rating>=2){
+              <i
+                class="fa-solid fa-star fa-2x mr-2"
+                (click)="setRate(2)"
+                style="color: gold"
+              ></i>
+              } @if(newReview.rating<3){
+              <i class="fa-regular fa-star fa-2x mr-2" (click)="setRate(3)"></i>
+              } @if(newReview.rating>=3){
+              <i
+                class="fa-solid fa-star fa-2x mr-2"
+                (click)="setRate(3)"
+                style="color: gold"
+              ></i>
+              } @if(newReview.rating<4){
+              <i class="fa-regular fa-star fa-2x mr-2" (click)="setRate(4)"></i>
+              } @if(newReview.rating>=4){
+              <i
+                class="fa-solid fa-star fa-2x mr-2"
+                (click)="setRate(4)"
+                style="color: gold"
+              ></i>
+              } @if(newReview.rating<5){
+              <i class="fa-regular fa-star fa-2x mr-2" (click)="setRate(5)"></i>
+              } @if(newReview.rating>=5){
+              <i
+                class="fa-solid fa-star fa-2x mr-2"
+                (onKeyPress)="setRate(5)"
+                style="color: gold"
+              ></i>
+              }
+            </div>
+          </div>
+
+          <div class="flex flex-col">
+            <label
+              for="comment"
+              class="text-lg font-medium mb-2 text-light-brown-color"
+              >Comentario:</label
+            >
+            <textarea
+              id="comment"
+              rows="5"
+              placeholder="Escriba su comentario..."
+              [(ngModel)]="newReview.comment"
+              class="input-field w-full p-2 border-2 border-light-brown-color focus:outline-none focus:ring-2 focus:ring-light-brown-color focus:border-transparent rounded-md"
+              maxlength="255"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="flex items-center mt-4">
+          @if(!userPostedReview){
+          <button
+            class="border-2 border-light-brown-color px-4 py-2 hover:bg-light-brown-color hover:text-white text-light-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+            type="button"
+            (click)="saveReview()"
+          >
+            Enviar</button
+          >} @if(userModReview){
+          <button
+            class="border-2 border-light-brown-color px-4 py-2 hover:bg-light-brown-color hover:text-white text-light-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+            type="button"
+            (click)="modReview()"
+          >
+            Modificar
+          </button>
+
+          <button
+            class="border-2 border-light-brown-color px-4 py-2 hover:bg-light-brown-color hover:text-white text-light-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+            type="button"
+            style="margin-left: 10px"
+            (click)="userModRev()"
+          >
+            Cancelar</button
+          >}
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div
+      class="bg-medium-brown-color items-center p-4 rounded-lg shadow-md w-full"
+    >
+      <h4
+        class="text-lg font-semibold text-center text-light-brown-color mb-4 underline underline-offset-4"
+      >
+        Reseñas : {{ nReviews() }}
+      </h4>
+    </div>
+    }
+  </div>
+
+  <div class="container mx-auto mt-5 mb-5 w-3/4 sm:px-6 lg:px-8 flex flex-col">
+    <div
+      *ngFor="let bar of barWidths; let i = index; trackBy: trackByIndex"
+      class="flex flex-row justify-start items-center mb-2"
+    >
+      <app-stars [nota]="i + 1" style="width: 120px"></app-stars>
+      <div
+        class="bar"
+        [style.width.%]="bar"
+        class="bg-medium-brown-color h-5 ml-2"
+      ></div>
+    </div>
+  </div>
+
+  <div class="container flex flex-col items-center">
+    <h3 class="text-2xl font-bold text-center">Todas las reseñas</h3>
+
+    <div
+      class="bg-transparent rounded relative overflow-hidden sm:w-1/2 lg:w-3/4 md:w-1/2 mx-auto mb-4 p-4 flex flex-col"
+    >
+      <div
+        class="card reviewCard"
+        *ngFor="let review of reviews"
+        style="margin-bottom: 1em"
+      >
+        <div
+          class="flex flex-row justify-between mt-4 ml-4 mr-4"
+          style="flex-wrap: wrap"
+        >
+          <h1
+            class="text-base ml-4 font-bold bg-medium-brown-color rounded p-1 text-white"
+          >
+            {{ review.user.name }}
+          </h1>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+              width: 200px;
+            "
+          >
+            @if(isAdmin!=true){
+            <p
+              class="text-sm mr-2 text-center"
+              [style.color]="review.isPurchased ? 'green' : 'red'"
+              *ngIf="review.user.id != getUserId()"
+            >
+              Compra verificada
+            </p>
+            }
+            <button
+              class="border-2 border-medium-brown-color px-4 py-2 hover:bg-medium-brown-color hover:text-white text-medium-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+              type="button"
+              *ngIf="review.user.id === getUserId()"
+              (click)="userModRev()"
+            >
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button
+              class="border-2 border-medium-brown-color px-4 py-2 hover:bg-medium-brown-color hover:text-white text-medium-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+              type="button"
+              *ngIf="review.user.id === getUserId()"
+              (click)="removeReview()"
+            >
+              <i class="fa-solid fa-trash"></i></button
+            ><button
+              class="border-2 border-medium-brown-color px-4 py-2 hover:bg-medium-brown-color hover:text-white text-medium-brown-color hover:shadow-lg focus:shadow-outline focus:outline-none font-medium hover:scale-105 rounded-full transition duration-300 ease-in-out delay-100"
+              type="button"
+              *ngIf="isAdmin === true"
+              (click)="removeAdminReview(review.id)"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+          <app-stars
+            [nota]="review.rating"
+            class="mr-4 text-shadow"
+          ></app-stars>
+        </div>
+
+        <div class="flex flex-row justify-left mt-4 mb-4">
+          <div class="flex flex-col justify-start baseline ml-8 mr-8">
+            <div
+              [style.maxHeight]="
+                review.comment.length > 150 ? 'calc(100vh-4rem)' : null
+              "
+              [style.overflowY]="review.comment.length > 150 ? 'scroll' : null"
+            >
+              <p
+                class="text-sm sm:text-md md:text-lg lg:text-xl mt-2 mb-2 font-medium text-shadow break-words w-full lg:w-96 md:w-80 sm:w-72 overflow-y-auto max-h-[calc(100vh-4rem)]"
+              >
+                {{ review.comment }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

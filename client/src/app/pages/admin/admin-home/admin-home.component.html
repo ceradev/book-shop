@@ -1,0 +1,251 @@
+<div class="container mt-5 mb-3">
+  <h1 class="text-xl font-nunito font-semibold text-center text-shadow">
+    Bienvenido al panel de administración de la librería Eviden
+  </h1>
+  <p class="text-center w-1/2 mx-auto text-dark-brown-color text-sm">
+    En este apartado podras gestionar los libros no publicados en la librería,
+    para que puedas publicarlos, rechazarlos o eliminarlos
+  </p>
+</div>
+
+<div class="container mx-auto px-4 sm:px-8">
+  <div class="py-8">
+    <div>
+      <h2 class="text-2xl font-semibold leading-tight">Gestión de libros</h2>
+    </div>
+    <div class="my-2 flex sm:flex-row flex-col">
+      <div class="flex flex-row mb-1 sm:mb-0">
+        <div class="relative">
+          <select
+            class="h-full rounded-l border block appearance-none w-full bg-white border-dark-brown-color text-dark-brown-color py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-medium-brown-color"
+            (change)="onSelectBooks($event)"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-dark-brown-color"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="relative">
+          <select
+            class="h-full rounded-r sm:rounded-r-none sm:border-r-0 border-r block appearance-none w-full bg-white border-dark-brown-color text-dark-brown-color py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-medium-brown-color"
+            (change)="changeFilter($event)"
+          >
+            <option value="PUBLISHED">Publicados</option>
+            <option value="PENDING">No publicados</option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="block relative">
+        <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
+            <path
+              d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
+            ></path>
+          </svg>
+        </span>
+        <input
+          placeholder="Buscar por..."
+          (input)="onInputChange($event)"
+          type="text"
+          [(ngModel)] ="search"
+          class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-dark-brown-color border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-dark-brown-color text-dark-brown-color focus:bg-white focus:placeholder-dark-brown-color focus:text-dark-brown-color focus:outline-none"
+        />
+      </div>
+    </div>
+    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+      <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+        <table class="min-w-full leading-normal">
+          <thead>
+            <tr>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Title
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Isbn
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Autor
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Genero
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Precio
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-medium-brown-color bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            @if(books.length <= 0){
+            <tr>
+              <td
+                colspan="6"
+                class="px-3 py-3 bg-white text-lg items-center justify-center"
+              >
+                <p class="whitespace-no-wrap w-40 text-center font-semibold">
+                  No hay libros
+                </p>
+              </td>
+            </tr>
+            } @else { @for(book of books; track book.isbn){
+            <tr class="hover:bg-medium-brown-color hover:text-white hover:shadow-lg focus:shadow-outline focus:outline-none transition-all duration-300 text-center"
+            >
+              <td
+                class="px-2 py-2 border-b border-medium-brown-color text-sm"
+              >
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 w-20 h-32">
+                    <img
+                      class="w-full h-full rounded-md object-cover object-center shadow-lg mb-2 hover:opacity-75 transition duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer  
+                    " 
+                      src="{{ book.cover }}"
+                      alt=""
+                      [routerLink]="['book/details', book.isbn]"
+                    />
+                  </div>
+                  <div class="ml-3">
+                    <p
+                      class="text-left whitespace-no-wrap w-40 font-semibold"
+                    >
+                      {{ book.title }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td
+                class="px-2 py-2 border-b border-medium-brown-color text-sm"
+              >
+                <p class="whitespace-no-wrap w-40 font-semibold">
+                  {{ book.isbn }}
+                </p>
+              </td>
+              <td
+                class="px-2 py-3 border-b border-medium-brown-color text-sm"
+              >
+                <p class="whitespace-no-wrap w-40 font-semibold">
+                  {{ book.author.firstName + " " + book.author.lastName }}
+                </p>
+              </td>
+              <td
+                class="px-2 py-2 border-b border-medium-brown-color text-sm"
+              >
+                <p class="whitespace-no-wrap w-40 font-semibold">
+                  {{ book.genres[0].name }}
+                </p>
+              </td>
+              <td
+                class="px-2 py-2 border-b border-medium-brown-color text-sm"
+              >
+                <p class="whitespace-no-wrap w-40 font-semibold">
+                  {{ book.price }}€
+                </p>
+              </td>
+              <td
+                class="px-2 py-2 border-b border-medium-brown-color text-sm"
+              >
+                @if(filterText == 'PUBLISHED'){
+                <button
+                  class="bg-light-red-color text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded"
+                  (click)="deleteBook(book.isbn)"
+                  >
+                  Eliminar
+                </button>
+                <button
+                  class="border-2 border-dark-brown-color hover:bg-dark-brown-color  hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 mt-2 rounded"
+                  [routerLink]="['book/details', book.isbn]"
+                  >
+                  Detalles
+                </button>
+                } @else {
+                <button
+                class="bg-light-red-color text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded"
+                (click)="changeStatusBook(book.isbn, 'REJECTED')">
+                  Rechazar
+                </button>
+                <button
+                class="border-2 border-dark-brown-color hover:bg-dark-brown-color  hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 mt-2 rounded"
+                (click)="changeStatusBook(book.isbn, 'PUBLISHED')">
+                  Publicar
+                </button>
+                }
+              </td>
+            </tr>
+            } }
+          </tbody>
+        </table>
+        <div
+          class="px-3 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between"
+        >
+          <span class="text-xs xs:text-sm text-black">
+            Mostrando {{ pagination.pageNumber + 1 }} de
+            {{ pagination.totalPages }} paginas
+          </span>
+          <div class="inline-flex mt-2 xs:mt-0">
+            <button
+              class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-l"
+              (click)="changePage(pagination.pageNumber - 1)"
+              [style.visibility]="
+                this.pagination.pageNumber === 0 ? 'hidden' : 'visible'
+              "
+            >
+              Anterior
+            </button>
+            <button
+              class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-r"
+              (click)="changePage(pagination.pageNumber + 1)"
+              [style.visibility]="
+                this.pagination.pageNumber === this.pagination.totalPages - 1
+                  ? 'hidden'
+                  : 'visible'
+              "
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

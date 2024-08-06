@@ -1,0 +1,109 @@
+<div class="flex flex-col items-center justify-around mt-10 w-full">
+  <div
+    class="border-4 border-medium-brown-color bg-gradient-to-r from-dark-brown-color via-medium-brown-color to-dark-brown-color rounded-lg shadow-md p-6"
+    style="width: 80%"
+  >
+    <div class="flex flex-row items-center justify-between" style="gap: 1rem">
+      <div>
+        <img
+          src="assets/images/iconUserLight.png"
+          class="object-contain"
+          alt="foto de perfil de usuario"
+        />
+      </div>
+
+      <div class="flex-1">
+        <h5 class="text-lg font-semibold text-white">{{ user.username }}</h5>
+        <p class="text-sm text-light-brown-color">{{ user.email }}</p>
+      </div>
+
+      <div class="flex-1 text-center" style="border-left: 1px solid #222">
+        @if(user.role == "Cliente") {
+        <h5 class="text-lg font-semibold text-white">Leidos este año</h5>
+        <p class="text-md font-semibold text-light-brown-color">00</p>
+        } @else if (user.role == "Vendedor") {
+        <h5 class="text-lg font-semibold text-white">Vendidos este año</h5>
+        <p class="text-md font-semibold text-light-brown-color">00</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  <button
+    (click)="goBack()"
+    class="border-2 border-medium-brown-color rounded-lg hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium text-sm p-2 shadow-md"
+    style="margin-top: 10px"
+  >
+    Volver atrás
+  </button>
+
+  <div
+    class="bg-transparent rounded-lg shadow-md p-6 w-full flex flex-col mt-10 mb-10 gap-4"
+    style="width: 80%; margin-top: 30px"
+  >
+    <div class="flex flex-col relative">
+      <h5 class="text-2xl font-semibold mb-4">
+        Datos personales
+      </h5>
+      <hr class="border-2 border-medium-brown-color" />
+      <div class="flex flex-row items-center">
+        <p class="text-lg">
+          <b>Nombre de usuario:</b>
+          {{ user.username }}
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg">
+          <b>Correo electrónico:</b>
+          {{ user.email }}
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg">
+          <b>Nombre:</b>
+          {{ user.name }}
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg">
+          <b>Apellidos:</b>
+          {{ user.surname }}
+        </p>
+      </div>
+      <div class="flex flex-row items-center">
+        <p class="text-lg">
+          <b>Rol:</b>
+          {{ user.role }}
+        </p>
+      </div>
+    </div>
+
+    @if(user.role === 'Cliente') {
+    <hr class="border-2 border-medium-brown-color" />
+    <h5 class="text-2xl font-semibold mb-4">
+      Direcciones
+    </h5>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      @for(address of user.addresses; track address.id){
+      <div
+        class="bg-transparent border-2 border-medium-brown-color rounded-lg shadow-md p-4"
+      >
+        <h3 class="text-lg font-semibold">
+          <b>Dirección:</b> {{ address.road }}
+        </h3>
+        <dl class="grid grid-cols-2 gap-4 mt-4">
+          <dt class="font-bold">Ciudad:</dt>
+          <dd>{{ address.city }}</dd>
+          <dt class="font-bold">Provincia:</dt>
+          <dd>{{ address.country }}</dd>
+          <dt class="font-bold">Código postal:</dt>
+          <dd>{{ address.postalCode }}</dd>
+          <dt class="font-bold">Numero:</dt>
+          <dd>{{ address.num }}</dd>
+        </dl>
+      </div>
+      }
+    </section>
+    }
+  </div>
+</div>

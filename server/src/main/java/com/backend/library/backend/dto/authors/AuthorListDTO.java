@@ -1,0 +1,17 @@
+package com.backend.library.backend.dto.authors;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
+
+@Builder
+public record AuthorListDTO(
+    Long authorId,
+
+    @NotBlank(message = "Author firstName cannot be blank")
+    String firstName,
+
+    @NotBlank(message = "Author lastName cannot be blank")
+    String lastName
+) 
+{
+}

@@ -1,0 +1,67 @@
+.tarjetaUsuario {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+  }
+
+.tinyCard{
+  background-color: var(--back-color);
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  width: 90%;
+  flex-grow: 1;
+  
+}
+
+.smallCards{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 500px;
+  height: 400px;
+}
+
+.bigCards{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 100%;
+
+}
+
+.card{
+  background-color: var(--medium-brown-color);
+}
+
+.card::-webkit-scrollbar {
+  background-color: #f1f1f1;
+}
+
+/* Mozilla */
+.card::-moz-scrollbar {
+  background-color: #f1f1f1;
+}
+
+/* Cambiar el color del pulgar de desplazamiento dentro de un card */
+/* WebKit */
+.card::-webkit-scrollbar-thumb {
+  background-color: var(--dark-red-color);
+}
+
+/* Mozilla */
+.card::-moz-scrollbar-thumb {
+  background-color: var(--dark-red-color);
+}
+
+.button{
+  border-radius: 10px;
+}

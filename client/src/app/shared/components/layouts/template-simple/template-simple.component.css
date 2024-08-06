@@ -1,0 +1,10 @@
+.backgroundPattern {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color:var(#E8D4BF);
+  opacity: 0.9;
+  background-image: radial-gradient(var(#B8987A) 1.3px,var(#E8D4BF) 1.3px);
+  background-size: 26px 26px;
+}

@@ -1,0 +1,287 @@
+<div class="container mt-5">
+  <div class="flex flex-col items-center justify-center">
+    <div
+      class="w-full max-w-5xl bg-transparent border-2 border-medium-brown-color shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    >
+      <h1 class="text-xl font-nunito font-semibold text-center text-shadow">
+        Busqueda avanzada
+      </h1>
+      <p class="text-sm font-nunito text-center text-dark-brown-color">
+        Ingresa los datos por los campos que deseas buscar
+      </p>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="title"
+          name="title"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          [(ngModel)]="bookSearch.title"
+          placeholder="Título"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="title"
+          class="absolute left-0 -top-3.5 font-nunito text-shadow text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Título</label
+        >
+      </div>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="author"
+          name="author"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          [(ngModel)]="bookSearch.authorFirstName"
+          placeholder="Autor"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="author"
+          class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Autor</label
+        >
+      </div>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="textIsbn"
+          name="textIsbn"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          placeholder="Isbn"
+          [(ngModel)]="bookSearch.isbn"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="textIsbn"
+          class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Isbn</label
+        >
+      </div>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="editorial"
+          name="editorial"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          [(ngModel)]="bookSearch.editorial"
+          placeholder="Editorial"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="editorial"
+          class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Editorial</label
+        >
+      </div>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="edition"
+          name="edition"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          [(ngModel)]="bookSearch.edition"
+          placeholder="Edicion"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="edition"
+          class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Edición</label
+        >
+      </div>
+      <div class="relative mb-4">
+        <input
+          autocomplete="off"
+          id="genero"
+          name="genero"
+          type="text"
+          class="peer placeholder-transparent font-nunito h-10 w-full bg-transparent border-b-2 border-medium-brown-color text-shadow focus:outline-none focus:border-dark-brown-color"
+          [(ngModel)]="genreString"
+          placeholder="Genero"
+          (keyup.enter)="doFilter()"
+        />
+        <label
+          for="genero"
+          class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+          >Genero</label
+        >
+      </div>
+      <div class="flex justify-center items-center">
+        <button
+          class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white transition-all duration-200 ease-in-out px-4 py-2 rounded-md shadow-md"
+          type="button"
+          id="button-addon2"
+          (click)="doFilter()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
+    <div
+      class="flex justify-center items-center border-b-2 border-medium-brown-color py-2"
+    >
+      <h1 class="text-xl font-nunito font-semibold text-shadow" style="flex: 1">
+        Resultados de la busqueda
+      </h1>
+      <div class="flex">
+        <p
+          class="text-sm font-nunito font-semibold text-shadow mr-2 mt-2"
+          style="flex: 1"
+        >
+          Mostrar
+        </p>
+        <select
+          class="border-2 bg-transparent font-nunito text-center font-semibold border-medium-brown-color rounded-lg px-2 py-1"
+          style="flex: 1"
+          (change)="onSelectBooks($event)"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="">25</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto mt-8 mb-5">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-4"
+    >
+      <div
+        *ngFor="let book of books"
+        class="bg-transparent rounded-md p-4 space-y-4 shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+      >
+        <div class="flex items-center">
+          <a [routerLink]="['/book/details', book.isbn]">
+            <img
+              class="w-24 h-32 object-cover transition hover:opacity-75 hover:-translate-y-1 duration-300 ease-in-out"
+              src="{{ book.cover }}"
+              alt=""
+            />
+          </a>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold">{{ book.title }}</h4>
+          <p class="text-sm">{{ book.isbn }}</p>
+          <p class="text-sm">
+            {{ book.author.firstName }}, {{ book.editorial }}
+          </p>
+          <app-stars [nota]="book.reviewMean"></app-stars>
+          @if(book.nReviews < 1) {
+          <p class="text-sm">Calificación: 0</p>
+          } @else {
+          <p class="text-sm">Calificaciones: {{ book.nReviews }}</p>
+          }
+        </div>
+        <div class="flex justify-between items-center">
+          <p
+            class="text-lg mt-2 font-semibold bg-medium-brown-color text-white rounded-lg px-3 py-1 self-start"
+          >
+            {{ book.price }} €
+          </p>
+          <div class="flex items-center space-x-2">
+            @if(isClient == true || isClient == false && isAdmin == false &&
+            isSeller == false ) { @if(book.isFavourite == true) {
+            <button>
+              <i
+                (click)="removeFavourite(book.isbn)"
+                class="fa-solid fa fa-heart text-3xl text-medium-brown-color hover:text-dark-brown-color transition duration-300 ease-in-out delay-100"
+              ></i>
+            </button>
+            } @else {
+            <button>
+              <i
+                (click)="addToFavorites(book.isbn)"
+                class="fa-regular fa fa-heart text-3xl text-medium-brown-color hover:text-dark-brown-color transition duration-300 ease-in-out delay-100"
+              ></i>
+            </button>
+            }
+
+            <button
+              class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all duration-300 ease-in-out delay-100 focus:ring-2 focus:ring-offset-2 focus:ring-medium-brown-color font-semibold py-2 px-2 rounded self-end"
+              (click)="addToCart(book)"
+            >
+              Añadir al carrito
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center mt-10 mb-5">
+      <nav class="flex" aria-label="navigation">
+        <ul class="flex space-x-4 items-center flex-wrap">
+          <li>
+            <button
+              class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+              [style.visibility]="
+                this.pagination.pageNumber === 0 ? 'hidden' : 'visible'
+              "
+              (click)="changePage(this.pagination.pageNumber - 1)"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="white"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
+              </svg>
+            </button>
+          </li>
+          <li *ngFor="let page of pages; let i = index">
+            <button
+              class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+              (click)="changePage(page - 1)"
+            >
+              {{ page }}
+            </button>
+          </li>
+          <li>
+            <button
+              class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+              [style.visibility]="
+                this.pagination.pageNumber === this.pagination.totalPages - 1
+                  ? 'hidden'
+                  : 'visible'
+              "
+              (click)="changePage(this.pagination.pageNumber + 1)"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="white"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

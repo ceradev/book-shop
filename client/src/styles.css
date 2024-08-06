@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "mdb-angular-ui-kit/assets/scss/mdb.scss";
+@import 'sweetalert2/dist/sweetalert2.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.view-transition-name{
+    view-transition-name: book-detail-;
+    view-transition-name: book-cart-;
+    view-transition-name: book-fav-;
+}
+
+::view-transition-old(book-detail-),
+::view-transition-new(book-detail-){
+    animation-duration: 1s;
+}
+
+::view-transition-old(book-cart-),
+::view-transition-new(book-cart-){
+    animation-duration: 1s;
+}
+
+::view-transition-old(book-fav-),
+::view-transition-new(book-fav-){
+    animation-duration: 1s;
+}
+
+::view-transition-group(:root){
+    animation: none;
+}

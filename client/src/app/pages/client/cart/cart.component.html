@@ -1,0 +1,111 @@
+<div class="bg-gray-100 pt-10">
+  @if(cart != null && cart.items != null && cart.items.length > 0) {
+    <h1 class="mb-5 text-center text-2xl font-bold">Carrito de compra</h1>
+    <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 mb-4">
+      <div class="rounded-lg md:w-2/3">
+        @for (item of cart.items; track $index) {
+        <div class="bg-white rounded-lg shadow-md mb-1 min-w-0 flex items-center p-2">
+          <img src="{{item.cover}}" alt="product-image" class="w-24 h-24 object-cover rounded-lg mr-4" 
+          [style.view-transition-name]="'book-detail-' + item.isbn"/> 
+          <div class="flex-1 min-w-0">
+            <div class="product-name min-w-0 flex items-center justify-between">
+              <a class="truncate truncate-1-lines" [routerLink]="['/book/details/', item.isbn]">{{item.title}}</a>
+              <div class="icons">
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2">
+                  <i class="p-0 fa-sm text-red fa-regular fa-heart"></i>
+                </button>
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                  (click)="removeFromCart(item.isbn, item.quantity)">
+                  <i class="p-0 fa-sm text-red fas fa-trash"></i>
+                </button>
+              </div>
+
+            </div>
+            <div class="product-details">
+              <p class="text-sm text-gray-600 m-0">{{item.editorial}}</p>
+              <p class="text-xs text-gray-600 m-0">{{item.edition}}</p>
+            </div>
+
+            <div class="mt-2  flex items-center justify-between product-price-quantity">
+              <div class="price flex flex-1 flex-nowrap">
+                <span class="font-semibold">{{item.price.toFixed(2)}}</span><span class="font-semibold">€</span>
+              </div>
+              <div class="quantity flex">
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                        (click)="removeFromCart(item.isbn, item.quantity)"
+                        [disabled]="isLoading">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <select [(ngModel)]="item.quantity"
+                        (change)="updateQuantity(item.isbn, item.quantity)"
+                        class="form-control"
+                        [disabled]="isLoading">
+                  @for (item of [].constructor(item.quantity +1); track $index) {
+                    <option value="{{$index+1}}">{{$index+1}}</option>
+                  }
+                </select>
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                        (click)="addItemToCart(item.isbn, 1)"
+                        [disabled]="isLoading">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+        }
+
+      </div>
+      <!-- Sub total -->
+      <div class="mt-6 h-full rounded-lg border bg-white p-4 shadow-md md:mt-0 md:w-1/3">
+        <div class="mb-2 flex justify-between">
+          <p class="text-gray-700">Subtotal</p>
+          <p class="text-gray-700">{{cart.amount}} <span>€</span></p>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-gray-700">Shipping</p>
+          <p class="text-gray-700">4.99 <span>€</span></p>
+        </div>
+        <hr class="my-4" />
+        <div class="flex justify-between">
+          <p class="text-lg font-bold">Total</p>
+          <div class="">
+            <p class="mb-1 text-lg font-bold">{{cart.total}}<span>€</span></p>
+            <p class="text-sm text-gray-700">I.G.I.C Incluida</p>
+          </div>
+        </div>
+
+        <app-payme class="w-100 text-white font-bold rounded-full">
+        </app-payme>
+      </div>
+    </div>
+    }
+    @if (cart != null && cart.items!=null && cart.items.length <=0) {
+      <div class="flex items-center justify-center py-4 bg-light-brown-color  bg-fixed bg-cover bg-bottom error-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-black text-center -mt-52">
+              <div class="relative ">
+              <h1 class="relative text-9xl tracking-tighter-less text-shadow font-sans font-bold  mb-4"><i class="text-dark-brown-color fa-solid fa-basket-shopping"></i></h1>
+                </div>
+              <h5 class="text-gray-300 font-semibold -mr-10 -mt-3 mb-4">¿Aún no hay artículos? Continúa comprando para explorar</h5>
+              <!-- <button
+                [routerLink]="['/']"
+                class="px-5 py-3 mx-2 text-sm shadow-sm border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium tracking-wider rounded-full ">
+                Identifícate
+              </button> -->
+              <button
+                [routerLink]="['/']"
+                class="px-5 py-3 text-sm shadow-sm border-2 border-light-brown-color bg-light-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium tracking-wider rounded-full ">
+                Explora libros
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+</div>

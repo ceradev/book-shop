@@ -1,0 +1,45 @@
+.btn {
+    margin-left: 10px;
+    height: 40px;
+}
+
+.titleFilter {
+    background-color: var(--light-brown-color);
+}
+
+.selectFilter {
+    background-color: var(--light-brown-color);
+
+}
+
+.reviewCard {
+    display: flex; 
+    flex-direction: column; 
+    margin-left: 2em; 
+    margin-right: 2em;
+    margin-top: 3em;
+    background-color: var(--light-brown-color); 
+}
+
+.btnPrice{
+    width: 100px;
+    height: 70px;
+}
+
+/* Estilos para el contenedor del diagrama */
+.bar-chart {
+    width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+/* Estilos para las barras */
+.bar {
+    background-color: var(--shadow-color);
+    margin-bottom: 10px;
+    color: white;
+    padding: 5px;
+    width: 300px;
+}
+

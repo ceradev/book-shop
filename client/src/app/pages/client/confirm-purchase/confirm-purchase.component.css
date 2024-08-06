@@ -1,0 +1,9 @@
+:host{
+    text-align: center;
+    
+}
+
+.contenedorImagen{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+}

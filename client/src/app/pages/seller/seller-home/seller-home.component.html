@@ -1,0 +1,269 @@
+<div class="container mt-5 mb-5">
+  <h1 class="text-xl font-nunito font-semibold text-center text-shadow">
+    Bienvenido a la sección empresarial de la librería Eviden
+  </h1>
+  <p class="text-center text-dark-brown-color text-sm w-1/2 mx-auto">
+    En este apartado podras ver tus libros publicados, los comentarios con sus
+    calificaciones y las veces que han sido comprados. Tambien podrás ver los
+    libros pendientes de publicar y los que han sido rechazados.
+  </p>
+</div>
+
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16">
+  <div
+    class="flex justify-center items-center border-b-2 border-medium-brown-color pb-2 mr-4 ml-4"
+  >
+    <h1 class="text-xl font-nunito font-semibold text-shadow" style="flex: 1">
+      Libros publicados
+    </h1>
+  </div>
+
+  <!-- Published books -->
+  <div>
+    <div
+      class="container mt-10 mb-5 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-3"
+      style="border-radius: 12px"
+    >
+      @for(book of publishedBooks; track book.isbn){
+      <div
+        class="bg-transparent border-2 border-green shadow-sm rounded-lg overflow-hidden hover:scale-105 transition duration-300 ease-in-out"
+      >
+        <div class="p-6">
+          <section class="flex flex-col">
+            <div class="flex">
+              <div class="w-1/4 mr-2">
+                <a class="" [routerLink]="['/book/details/', book.isbn]"
+                  ><img
+                    class="w-40 sm:w-32 md:w-36 lg:w-32 xl:w-40 sm:h-32 md:h-52 lg:h-32 xl:h-36 rounded-3 shadow-sm object-cover transition-all hover:opacity-75 hover:-translate-y-1 duration-300 ease-in-out"
+                    src="{{ book.cover }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div class="w-3/4">
+                <h4>{{ book.title }}</h4>
+                <p class="text-sm">{{ book.isbn }}</p>
+                <p class="text-sm">
+                  {{ book.author.firstName }} {{ book.author.lastName }} -
+                  {{ book.editorial }}
+                </p>
+              </div>
+            </div>
+            <div class="flex font-semibold justify-end items-end">
+              <p
+                class="text-lg mt-2 bg-medium-brown-color text-white px-3 py-1 rounded"
+              >
+                {{ book.price }} €
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  @if(paginationPublished.totalPages >= 1) {
+  <div
+    class="px-3 py-3 flex flex-col xs:flex-row items-center xs:justify-between border-t-2 border-medium-brown-color mx-4 my-4"
+  >
+    <span class="text-xs xs:text-sm text-black">
+      Mostrando {{ paginationPublished.pageNumber + 1 }} de
+      {{ paginationPublished.totalPages }} paginas
+    </span>
+    <div class="inline-flex mt-2 xs:mt-0">
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-l"
+        (click)="changePagePublished(paginationPublished.pageNumber - 1)"
+        [style.visibility]="
+          this.paginationPublished.pageNumber === 0 ? 'hidden' : 'visible'
+        "
+      >
+        Anterior
+      </button>
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-r"
+        (click)="changePagePublished(paginationPublished.pageNumber + 1)"
+        [style.visibility]="
+          this.paginationPublished.pageNumber ===
+          this.paginationPublished.totalPages - 1
+            ? 'hidden'
+            : 'visible'
+        "
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+  }
+
+  <div
+    class="flex justify-center items-center border-b-2 border-medium-brown-color pb-2 mr-4 ml-4"
+  >
+    <h1 class="text-xl font-nunito font-semibold text-shadow" style="flex: 1">
+      Libros pendientes de publicar
+    </h1>
+  </div>
+
+  <!-- Pending books -->
+  <div
+    class="container mt-10 mb-5 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-3"
+    style="border-radius: 12px"
+  >
+    @for(book of pendingBooks; track book.isbn){
+    <div
+      class="bg-transparent border-2 border-orange shadow-sm rounded-lg overflow-hidden hover:scale-105 transition duration-300 ease-in-out"
+    >
+      <div class="p-6">
+        <section class="flex flex-col">
+          <div class="flex">
+            <div class="w-1/4 mr-2">
+              <a class="" [routerLink]="['/book/details/', book.isbn]">
+                <img
+                  class="w-40 rounded-3 sm:w-32 md:w-36 lg:w-32 xl:w-72 sm:h-32 md:h-52 lg:h-32 xl:h-40 transition-all hover:opacity-75 hover:-translate-y-1 duration-300 ease-in-out shadow-sm object-cover"
+                  src="{{ book.cover }}"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="w-3/4">
+              <h4>{{ book.title }}</h4>
+              <p class="text-sm">{{ book.isbn }}</p>
+              <p class="text-sm">
+                {{ book.author.firstName }} {{ book.author.lastName }} -
+                {{ book.editorial }}
+              </p>
+            </div>
+          </div>
+          <div class="flex font-semibold justify-end items-end">
+            <p
+              class="text-lg mt-2 bg-medium-brown-color text-white px-3 py-1 rounded"
+            >
+              {{ book.price }} €
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+    }
+  </div>
+
+  @if (this.paginationPending.totalPages >= 1) {
+  <div
+    class="px-3 py-3 flex flex-col xs:flex-row items-center xs:justify-between border-t-2 border-medium-brown-color mx-4 my-4"
+  >
+    <span class="text-xs xs:text-sm text-black">
+      Mostrando {{ paginationPending.pageNumber + 1 }} de
+      {{ paginationPending.totalPages }} paginas
+    </span>
+    <div class="inline-flex mt-2 xs:mt-0">
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-l"
+        (click)="changePagePending(paginationPublished.pageNumber - 1)"
+        [style.visibility]="
+          this.paginationPending.pageNumber === 0 ? 'hidden' : 'visible'
+        "
+      >
+        Anterior
+      </button>
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-r"
+        (click)="changePagePending(paginationPublished.pageNumber + 1)"
+        [style.visibility]="
+          this.paginationPending.pageNumber ===
+          this.paginationPending.totalPages - 1
+            ? 'hidden'
+            : 'visible'
+        "
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+  }
+  <div
+    class="flex justify-center items-center border-b-2 border-medium-brown-color pb-2 mr-4 ml-4"
+  >
+    <h1 class="text-xl font-nunito font-semibold text-shadow" style="flex: 1">
+      Libros rechazados
+    </h1>
+  </div>
+
+  <!-- Rejected books -->
+  <div
+    class="container mt-10 mb-5 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-3"
+    style="border-radius: 12px"
+  >
+    @for(book of rejectedBooks; track book.isbn) {
+    <div
+      class="bg-transparent border-2 border-light-red-color shadow-sm rounded-lg overflow-hidden hover:scale-105 transition duration-300 ease-in-out"
+    >
+      <div class="p-6">
+        <section class="flex flex-col">
+          <div class="flex">
+            <div class="w-1/4 mr-2">
+              <a class="" [routerLink]="['/book/details/', book.isbn]">
+                <img
+                  class="w-40 sm:w-32 md:w-36 lg:w-32 xl:w-50 sm:h-32 md:h-52 lg:h-32 xl:h-40 rounded-3 transition-all hover:opacity-75 hover:-translate-y-1 duration-300 ease-in-out shadow-sm object-cover"
+                  src="{{ book.cover }}"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="w-3/4">
+              <h4>{{ book.title }}</h4>
+              <p class="text-sm">{{ book.isbn }}</p>
+              <p class="text-sm">
+                {{ book.author.firstName }} {{ book.author.lastName }} -
+                {{ book.editorial }}
+              </p>
+            </div>
+          </div>
+          <div class="flex font-semibold justify-end items-end">
+            <p
+              class="text-lg mt-2 bg-medium-brown-color text-white px-3 py-1 rounded"
+            >
+              {{ book.price }} €
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+    }
+  </div>
+
+  @if (this.paginationRejected.totalPages >= 1) {
+  <div
+    class="px-3 py-3 flex flex-col xs:flex-row items-center xs:justify-between border-t-2 border-medium-brown-color mx-4 my-4"
+  >
+    <span class="text-xs xs:text-sm text-black">
+      Mostrando {{ paginationRejected.pageNumber + 1 }} de
+      {{ paginationRejected.totalPages }} paginas
+    </span>
+    <div class="inline-flex mt-2 xs:mt-0">
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-l"
+        (click)="changePageRejected(paginationRejected.pageNumber - 1)"
+        [style.visibility]="
+          this.paginationRejected.pageNumber === 0 ? 'hidden' : 'visible'
+        "
+      >
+        Anterior
+      </button>
+      <button
+        class="text-sm bg-medium-brown-color text-white hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-semibold py-2 px-4 rounded-r"
+        (click)="changePageRejected(paginationPublished.pageNumber + 1)"
+        [style.visibility]="
+          this.paginationRejected.pageNumber ===
+          this.paginationRejected.totalPages - 1
+            ? 'hidden'
+            : 'visible'
+        "
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+  }
+</div>

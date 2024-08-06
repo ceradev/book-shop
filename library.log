@@ -1,0 +1,91 @@
+2024-08-06T22:33:44.044+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] c.b.library.backend.BackendApplication   : Starting BackendApplication using Java 21.0.3 with PID 26244 (C:\Users\Usuario\Desktop\Files\Work\Github proyects\bookshop\server\target\classes started by Usuario in C:\Users\Usuario\Desktop\Files\Work\Github proyects\bookshop)
+2024-08-06T22:33:44.046+01:00 DEBUG 26244 --- [Libreria-Grupo-3-Back] [restartedMain] c.b.library.backend.BackendApplication   : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-08-06T22:33:44.046+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] c.b.library.backend.BackendApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-08-06T22:33:44.086+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-06T22:33:44.087+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-06T22:33:45.114+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-06T22:33:45.197+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 74 ms. Found 13 JPA repository interfaces.
+2024-08-06T22:33:46.143+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8089 (http)
+2024-08-06T22:33:46.168+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-06T22:33:46.169+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-08-06T22:33:46.254+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-06T22:33:46.255+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2167 ms
+2024-08-06T22:33:46.697+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-06T22:33:46.742+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-08-06T22:33:46.766+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-06T22:33:46.921+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-06T22:33:46.975+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-06T22:33:47.208+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2a59a13e
+2024-08-06T22:33:47.209+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-06T22:33:48.029+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-06T22:33:48.040+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.040+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "books" does not exist, skipping
+2024-08-06T22:33:48.041+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.041+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "books_genres" does not exist, skipping
+2024-08-06T22:33:48.042+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.042+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "books_genres" does not exist, skipping
+2024-08-06T22:33:48.043+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.043+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "carts_books" does not exist, skipping
+2024-08-06T22:33:48.044+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.044+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "carts_books" does not exist, skipping
+2024-08-06T22:33:48.045+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.045+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "favorite_books" does not exist, skipping
+2024-08-06T22:33:48.046+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.046+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "order_item" does not exist, skipping
+2024-08-06T22:33:48.047+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.047+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "order_item" does not exist, skipping
+2024-08-06T22:33:48.048+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.048+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "orders" does not exist, skipping
+2024-08-06T22:33:48.049+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.049+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "orders" does not exist, skipping
+2024-08-06T22:33:48.050+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.050+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "reviews" does not exist, skipping
+2024-08-06T22:33:48.051+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.051+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "sales" does not exist, skipping
+2024-08-06T22:33:48.052+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.052+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "user_address" does not exist, skipping
+2024-08-06T22:33:48.053+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.053+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "addresses" does not exist, skipping
+2024-08-06T22:33:48.053+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.054+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "authors" does not exist, skipping
+2024-08-06T22:33:48.054+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.055+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "books" does not exist, skipping
+2024-08-06T22:33:48.055+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.056+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "books_genres" does not exist, skipping
+2024-08-06T22:33:48.056+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.056+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "carts" does not exist, skipping
+2024-08-06T22:33:48.057+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.057+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "carts_books" does not exist, skipping
+2024-08-06T22:33:48.058+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.058+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "favorite_books" does not exist, skipping
+2024-08-06T22:33:48.058+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.059+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "genres" does not exist, skipping
+2024-08-06T22:33:48.059+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.059+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "order_item" does not exist, skipping
+2024-08-06T22:33:48.060+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.060+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "orders" does not exist, skipping
+2024-08-06T22:33:48.061+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.061+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "reviews" does not exist, skipping
+2024-08-06T22:33:48.061+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.062+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "sales" does not exist, skipping
+2024-08-06T22:33:48.062+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.062+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "user_address" does not exist, skipping
+2024-08-06T22:33:48.063+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.063+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "wallet" does not exist, skipping
+2024-08-06T22:33:48.063+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-08-06T22:33:48.064+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : sequence "orders_seq" does not exist, skipping
+2024-08-06T22:33:48.166+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-06T22:33:48.523+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-06T22:33:49.731+01:00  WARN 26244 --- [Libreria-Grupo-3-Back] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-06T22:33:50.212+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-06T22:33:50.301+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@c7edd20, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39806778, org.springframework.security.web.context.SecurityContextHolderFilter@aaaaa3c, org.springframework.security.web.header.HeaderWriterFilter@33b19784, org.springframework.web.filter.CorsFilter@4708809, org.springframework.security.web.authentication.logout.LogoutFilter@252d4b5c, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@3a07102f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a8874d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@68611f6a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b40155d, org.springframework.security.web.session.SessionManagementFilter@21ddd90d, org.springframework.security.web.access.ExceptionTranslationFilter@5a95a001, org.springframework.security.web.access.intercept.AuthorizationFilter@2d259e89]
+2024-08-06T22:33:50.843+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-08-06T22:33:50.891+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8089 (http) with context path ''
+2024-08-06T22:33:50.900+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [restartedMain] c.b.library.backend.BackendApplication   : Started BackendApplication in 7.173 seconds (process running for 7.634)
+2024-08-06T22:33:53.056+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-06T22:33:53.056+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-06T22:33:53.057+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-08-06T22:35:44.147+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [http-nio-8089-exec-1] c.b.l.b.s.i.BookServiceImpl              : Found 15 books with the filters provided.
+2024-08-06T22:35:44.186+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [http-nio-8089-exec-2] c.b.l.b.s.i.BookServiceImpl              : Found 15 books with the filters provided.
+2024-08-06T22:35:45.758+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [http-nio-8089-exec-3] c.b.l.b.s.i.BookServiceImpl              : Found 15 books with the filters provided.
+2024-08-06T22:35:45.776+01:00  INFO 26244 --- [Libreria-Grupo-3-Back] [http-nio-8089-exec-4] c.b.l.b.s.i.BookServiceImpl              : Found 15 books with the filters provided.

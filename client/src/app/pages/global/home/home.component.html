@@ -1,0 +1,9 @@
+@if(isAuthenticated) { @if(role == 'admin') {
+<app-admin-home></app-admin-home>
+} @else if(role == 'seller') {
+<app-seller-home></app-seller-home>
+} @else if(role == 'client') {
+<app-client-home></app-client-home>
+} } @else {
+<app-client-home></app-client-home>
+}

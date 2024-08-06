@@ -1,0 +1,181 @@
+<div class="container mt-5" style="margin-bottom: 120px">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16">
+    @if (books.length > 0) {
+    <div
+      class="flex justify-center items-center border-b-2 border-medium-brown-color pb-2 mr-4 ml-4"
+    >
+      <h1 class="text-xl font-nunito font-semibold text-shadow" style="flex: 1">
+        Tus libros favoritos
+      </h1>
+      <div class="flex">
+        <p
+          class="text-sm font-nunito font-semibold text-shadow mr-2 mt-2"
+          style="flex: 1"
+        >
+          Mostrar
+        </p>
+        <select
+          class="border-2 bg-transparent font-nunito text-center font-semibold border-medium-brown-color rounded-lg px-2 py-1"
+          style="flex: 1"
+          (change)="onSelectBooks($event)"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="">25</option>
+        </select>
+      </div>
+    </div>
+    <!-- Books -->
+    <div
+      class="container mt-10 mb-5 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2"
+      style="border-radius: 12px"
+    >
+      <div
+        class="bg-transparent border-2 border-medium-brown-color shadow-sm rounded-lg overflow-hidden hover:scale-105 transition duration-300 ease-in-out"
+        *ngFor="let book of books"
+      >
+        <div class="p-6">
+          <section class="flex flex-col">
+            <div class="flex">
+              <div class="w-1/4 mr-2">
+                <a class="" [routerLink]="['/book/details/', book.isbn]" 
+                  ><img
+                    class="w-40 h-48 rounded-3 shadow-sm object-cover transition hover:opacity-75 duration-300 ease-in-out"
+                    src="{{ book.cover }}"
+                    alt=""
+                    [style.view-transition-name]="'book-detail-' + book.isbn"
+                /></a> 
+              </div>
+              <div class="w-3/4">
+                <h4>{{ book.title }}</h4>
+                <p class="text-sm">{{ book.isbn }}</p>
+                <p class="text-sm">
+                  {{ book.author.firstName }}, {{ book.editorial }}
+                </p>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <p
+                class="text-lg mt-2 font-semibold bg-medium-brown-color text-white rounded-lg px-3 self-start"
+              >
+                {{ book.price }} €
+              </p>
+              <div class="flex items-center space-x-2">
+                <button (click)="deleteFavourite(book.isbn)">
+                  <i
+                    class="fa-solid fa-heart text-3xl text-medium-brown-color hover:text-dark-brown-color transition duration-300 ease-in-out delay-100"
+                  ></i>
+                </button>
+                <button
+                  class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all duration-300 ease-in-out delay-100 focus:ring-2 focus:ring-offset-2 focus:ring-medium-brown-color font-semibold py-2 px-4 rounded self-end"
+                  (click)="addToCart(book)"
+                >
+                  Añadir al carrito
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="flex justify-center items-center">
+      <div class="container mt-5 mb-5">
+        <div class="row">
+          <div class="col-sm-8 offset-sm-2 text-black text-center w-full p-5 rounded-lg shadow-lg border-2 border-medium-brown-color">
+            <h1 class="text-xl font-nunito font-semibold text-medium-brown-color" style="flex: 1">
+              No tienes libros favoritos
+            </h1>
+            <p
+              class="text-sm font-nunito font-semibold text-shadow mr-2 mt-2"
+              style="flex: 1"
+            >
+              ¡Agrega tus libros favoritos!
+            </p>
+            <div class="relative ">
+                  <i class="fa-solid fa-book-open-reader text-7xl text-medium-brown-color"></i>
+                </div>
+            <button
+              [routerLink]="['/']"
+              class="px-5 py-3 mt-5 text-sm shadow-sm border-2 border-medium-brown-color hover:text-white hover:bg-medium-brown-color hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all font-medium tracking-wider rounded-full ">
+              Explora libros
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  @if(books.length > 0) {
+
+  <!-- Pagination -->
+  <div class="flex justify-center mt-10 mb-5">
+    <nav class="flex" aria-label="navigation">
+      <ul class="flex space-x-4 items-center flex-wrap">
+        <li>
+          <button
+            class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+            [style.visibility]="
+              this.pagination.pageNumber === 0 ? 'hidden' : 'visible'
+            "
+            (click)="changePage(this.pagination.pageNumber - 1)"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+        </li>
+        <li *ngFor="let page of pages; let i = index">
+          <button
+            class="border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+            (click)="changePage(page - 1)"
+          >
+            {{ page }}
+          </button>
+        </li>
+        <li>
+          <button
+            class="bg-gradient-to-r from-medium-brown-color to-dark-brown-color text-white hover:shadow-lg hover:scale-105 transition-all duration-200 ease-in-out px-3 py-1 rounded-md"
+            [style.visibility]="
+              this.pagination.pageNumber === this.pagination.totalPages - 1
+                ? 'hidden'
+                : 'visible'
+            "
+            (click)="changePage(this.pagination.pageNumber + 1)"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="white"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  }
+</div>

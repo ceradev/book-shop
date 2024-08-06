@@ -1,0 +1,7 @@
+@if(role == 'admin') {
+    <app-admin-profile></app-admin-profile>
+} @else if(role == 'seller') {
+    <app-seller-profile></app-seller-profile>
+} @else if(role == 'client') {
+    <app-client-profile></app-client-profile>
+}

@@ -1,0 +1,188 @@
+  <div class="max-w-md mx-auto sm:max-w-xl">
+    <div class="relative py-2 sm:py-6 sm:rounded-3xl">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-light-brown-color to-dark-brown-color shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+      ></div>
+      <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl">
+        <div>
+          <h1 class="text-xl font-nunito font-semibold text-center text-shadow">
+            ¡Bienvenido a la librería Eviden, aqui podras reservar tus libros favoritos!
+          </h1>
+          <p
+            class="text-sm font-nunito font-semibold text-center text-medium-brown-color"
+          >
+            Por favor, registrese para continuar
+          </p>
+        </div>
+        <div class="mt-8">
+          <div class="mt-6 grid grid-cols-1 gap-4">
+            <div class="col-span-1">
+              <div class="flex items-center">
+                <input
+                  type="radio"
+                  name="roles"
+                  id="cliente"
+                  checked
+                  value="client"
+                  (change)="onRoleChange($event)"
+                  class="focus:ring-dark-brown-color h-4 w-4 text-medium-brown-color border-gray-300"
+                />
+                <label
+                  for="cliente"
+                  class="ml-3 text-sm font-nunito text-medium-brown-color align-middle"
+                  >Soy cliente</label
+                >
+              </div>
+              <div class="col-span-1">
+                <div class="flex items-center">
+                  <input
+                    type="radio"
+                    name="roles"
+                    id="empresario"
+                    value="seller"
+                    (change)="onRoleChange($event)"
+                    class="focus:ring-dark-brown-color h-4 w-4 text-medium-brown-color border-gray-300"
+                  />
+                  <label
+                    for="empresario"
+                    class="ml-2 text-sm font-nunito text-medium-brown-color"
+                    >Soy empresario</label
+                  >
+                </div>
+              </div>
+            </div>
+            <form>
+              <div class="grid grid-cols-1 gap-6">
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="name"
+                      name="name"
+                      type="text"
+                      [(ngModel)]="name"
+                      class="peer placeholder-transparent font-nunito h-10 w-full border-b-2 border-light-brown-color text-shadow focus:outline-none focus:border-dark-brown-color focus:borer-rose-600"
+                      placeholder="Nombre"
+                    />
+                    <label
+                      for="name"
+                      class="absolute left-0 -top-3.5 font-nunito text-shadow text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Nombre</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="surname"
+                      name="surname"
+                      [(ngModel)]="surname"
+                      type="text"
+                      class="peer placeholder-transparent font-nunito h-10 w-full border-b-2 border-light-brown-color text-shadow focus:outline-none focus:border-dark-brown-color focus:borer-rose-600"
+                      placeholder="Apellidos"
+                    />
+                    <label
+                      for="surname"
+                      class="absolute left-0 -top-3.5 font-nunito text-shadow text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Apellidos</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="username"
+                      name="username"
+                      [(ngModel)]="username"
+                      type="text"
+                      class="peer placeholder-transparent font-nunito h-10 w-full border-b-2 border-light-brown-color text-shadow focus:outline-none focus:border-dark-brown-color focus:borer-rose-600"
+                      placeholder="Username"
+                    />
+                    <label
+                      for="username"
+                      class="absolute left-0 -top-3.5 font-nunito text-shadow text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Nombre de usuario</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="email"
+                      name="email"
+                      type="email"
+                      [(ngModel)]="email"
+                      class="peer placeholder-transparent font-nunito h-10 w-full border-b-2 border-light-brown-color text-shadow focus:outline-none focus:border-dark-brown-color focus:borer-rose-600"
+                      placeholder="Email"
+                    />
+                    <label
+                      for="email"
+                      class="absolute left-0 -top-3.5 font-nunito text-shadow text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Email</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="password"
+                      name="password"
+                      type="password"
+                      [(ngModel)]="password"
+                      class="peer placeholder-transparent h-10 w-full border-b-2 border-light-brown-color text-black focus:outline-none focus:border-dark-brown-color"
+                      placeholder="Password"
+                    />
+                    <label
+                      for="password"
+                      class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Contraseña</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <div class="relative">
+                    <input
+                      autocomplete="off"
+                      id="repeatPassword"
+                      name="repeatPassword"
+                      type="password"
+                      [(ngModel)]="repeatPassword"
+                      class="peer placeholder-transparent h-10 w-full border-b-2 border-light-brown-color text-black focus:outline-none focus:border-dark-brown-color"
+                      placeholder="Repeat Password"
+                    />
+                    <label
+                      for="password"
+                      class="absolute left-0 -top-3.5 font-nunito text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                      >Repetir contraseña</label
+                    >
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <button
+                    (click)="onSubmit()"
+                    class="border-2  border-2 border-medium-brown-color hover:bg-medium-brown-color hover:text-white hover:scale-105 hover:shadow-lg focus:shadow-outline focus:outline-none transition-all duration-300 ease-in-out delay-100 focus:ring-2 focus:ring-offset-2 focus:ring-dark-brown-color w-full rounded-md px-2 py-1"
+                  >
+                    Registrarse
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="pt-6 text-center text-shadow">
+              <p class="text-sm font-nunito font-semibold">
+                Ya tienes cuenta?
+                <a
+                  routerLink="/login"
+                  class="text-medium-brown-color hover:text-dark-brown-color transition-colors duration-300 ease-in-out delay-100"
+                  >Iniciar sesion</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
